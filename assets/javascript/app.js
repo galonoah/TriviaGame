@@ -68,30 +68,59 @@ var QUESTIONS = [
     }
 ];
 
-var questionIndex = 2;
+var questionIndex = 6;
 
 $(function () {
 
-    // Function gets Questions-Data and append it to HTML
+    // Function gets Questions-Data and append it to HTML and
+    // return element with containing right answer text
     function getTrivia() {
 
+        var correctAnswer;
         $("#answers").empty();
         $("#question-header").text(QUESTIONS[questionIndex].question);
         QUESTIONS[questionIndex].answers.forEach(function (answer) {
             var div = $("<div>").append(answer);
             div.appendTo($("#answers"));
+            if (div.text() === QUESTIONS[questionIndex].correctAnswer) {
+                correctAnswer = div;
+            }
+            div.addClass("hover"); // Adds hover effect to each answer element
+        });
 
+        return correctAnswer;
+    }
+
+    // Function adds click event to each answer element and 
+    // checks for correct answer. If clicked element has
+    // correct answer, text turns green and appends check mark
+    // else text turns color gray and appends an X mark 
+    function checkCorrectAnswer(correctAnswerElement) {
+
+        $("#answers").children().click(function () {
+
+            if ($(this).text() === correctAnswerElement.text()) {
+                $(this).addClass("correct");
+                $(this).append("<span> &#10004;</span>");
+                $(this).siblings().addClass("wrong");
+            } else {
+                $(this).addClass("wrong");
+                $(this).append("<span> &#10008;</span>");
+                $(this).siblings().not(correctAnswerElement).addClass("wrong");
+                correctAnswerElement.append("<span> &#10004;</span>");
+                correctAnswerElement.addClass("correct");
+            }
+            $(this).parent().children().off("click"); // Prevent click event
+            $("#answers").children().removeClass("hover"); // Turn off hover effect
         });
 
     }
 
     function startGame() {
 
-        getTrivia();
+        var correctAnswerElement = getTrivia();
 
-        $("#answers").children().click(function(){
-            console.log($(this).text());
-        });
+        checkCorrectAnswer(correctAnswerElement);
 
     }
 
