@@ -68,6 +68,26 @@ var QUESTIONS = [
     }
 ];
 
+var questionIndex = 0;
+
 $(function () {
 
+    function getTrivia() {
+
+        $("#answers").empty();
+        $("#question-header").text(QUESTIONS[questionIndex].question);
+        QUESTIONS[questionIndex].answers.forEach(function (answer) {
+            var div = $("<div>").append(answer);
+            div.appendTo($("#answers"));
+        });
+
+    }
+
+    function startGame() {
+
+        getTrivia();
+        
+    }
+
+    startGame();
 });
