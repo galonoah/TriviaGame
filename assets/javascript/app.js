@@ -68,10 +68,11 @@ var QUESTIONS = [
     }
 ];
 
-var questionIndex = 0;
+var questionIndex = 2;
 
 $(function () {
 
+    // Function gets Questions-Data and append it to HTML
     function getTrivia() {
 
         $("#answers").empty();
@@ -79,6 +80,7 @@ $(function () {
         QUESTIONS[questionIndex].answers.forEach(function (answer) {
             var div = $("<div>").append(answer);
             div.appendTo($("#answers"));
+
         });
 
     }
@@ -86,7 +88,11 @@ $(function () {
     function startGame() {
 
         getTrivia();
-        
+
+        $("#answers").children().click(function(){
+            console.log($(this).text());
+        });
+
     }
 
     startGame();
