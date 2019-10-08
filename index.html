@@ -6,17 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trivia Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Baloo|Baloo+Bhai|Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo|Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/javascript/app.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div id="container">
 
         <h1 id="gameTitle">General<br> Knowledge<br> Trivia</h1>
+
+        <div id="card">
+            <div id="timer-image">
+                <img src="./assets/images/questionMark.gif" alt="Question Mark Gif">
+                <div id="timer">
+                    <h4 id="message"></h4>
+                    <h3>Time Left: <span id="timer-seconds">15</span></h3>
+                </div>
+            </div>
+            <div id="question">
+                <h2 id="question-header">In the initials of the federal agency known as NASA, what does the first 'A' stand for?</h2>
+                <div id="answers">
+                    <div class="correct">Lorem ipsum dolor sit amet <span>&#10004;</span></div>
+                    <div>Lorem ipsum dolor sit amet.</div>
+                    <div class="wrong">Lorem ipsum dolor sit amet <span>&#10008;</span></div>
+                    <div>Lorem ipsum dolor sit amet.</div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </body>
