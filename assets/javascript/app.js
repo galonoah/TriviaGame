@@ -104,6 +104,10 @@ $(function () {
         $("#answers").children().removeClass("hover");
         $("#answers").children().off("click");
 
+        $("#message").css("display", "block");
+        $("#timeLeft").css("display", "none");
+        $("#message").text("CORRECT");
+
     }
 
     // Function adds click event to each answer element and
@@ -124,6 +128,9 @@ $(function () {
                 $(this).siblings().not(correctAnswerElement).addClass("wrong");
                 correctAnswerElement.append("<span> &#10004;</span>");
                 correctAnswerElement.addClass("correct");
+                $("#message").css("display", "block");
+                $("#timeLeft").css("display", "none");
+                $("#message").text("INCORRECT");
             }
             $(this).parent().children().off("click"); // Prevent click event
             $("#answers").children().removeClass("hover"); // Turn off hover effect
@@ -146,6 +153,7 @@ $(function () {
                 clearInterval(timer);
                 timeLeft = 5;
                 $("#timeLeft").css("display", "none");
+                $("#message").text("TIME'S UP!");
                 $("#message").css("display", "block");
 
                 setTimeout(function () {
