@@ -217,5 +217,9 @@ $(function () {
 
     }
 
-    startGame();
+    $("#button").click(function(){
+        $("#card").css("display", "flex");
+        $("#button").remove();
+        startGame();
+    });
 });

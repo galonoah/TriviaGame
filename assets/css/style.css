@@ -13,6 +13,7 @@ body {
 	height: 100vh;
 	overflow: auto;
 	min-width: 375px;
+	text-align: center;
 }
 
 #gameTitle {
@@ -32,7 +33,7 @@ body {
 }
 
 #card {
-	display: flex;
+	display: none;
 	background-color: white;
 	border-radius: 10px;
 	overflow: hidden;
@@ -114,4 +115,27 @@ img {
 
 .wrong > span {
 	color: red;
+}
+
+#button {
+	background: rgba(36, 188, 248, 0.9);
+	border: 8px solid rgb(255, 255, 255);
+	border-radius: 50px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 1.2em;
+	font-weight: bold;
+	letter-spacing: 4px;
+	outline: none;
+	padding: 20px;
+	margin-top: 3em;
+	text-transform: uppercase;
+}
+
+#button:hover {
+	background: rgba(27, 145, 192, 0.9);
+}
+
+#button:active {
+	background: rgba(21, 94, 122, 0.9);
 }
