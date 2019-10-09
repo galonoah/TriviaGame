@@ -154,9 +154,9 @@ img {
 	padding: 30px;
 	border-radius: 20px;
 	border: 5px dashed rgba(27, 145, 192, 0.9);
-  }
+}
 
-  #close {
+#close {
 	display: block;
 	color: #aaa;
 	font-size: 2em;
@@ -166,4 +166,25 @@ img {
 	position: absolute;
 	right: 10px;
 	top: -5px;
-  }
+}
+
+@media all and (max-width: 650px) {
+	#card {
+		flex-direction: column;
+		margin: 0 20px;
+	}
+
+	#imageTrivia {
+		display: none;
+	}
+
+	#timer-image {
+		order: 2;
+		width: 100%;
+	}
+
+	#question {
+		order: 1;
+		width: 100%;
+	}
+}

@@ -69,8 +69,8 @@ var QUESTIONS = [
 ];
 
 var correctAnswerElement;
-var questionIndex = 8;
-var timeLeft = 5;
+var questionIndex = 0;
+var timeLeft = 12;
 var timer;
 var correct = 0;
 var incorrect = 0;
@@ -168,7 +168,7 @@ $(function () {
                 incorrect++;
                 showCorrectAnswer();
                 clearInterval(timer);
-                timeLeft = 5;
+                timeLeft = 15;
                 $("#timeLeft").css("display", "none");
                 $("#message").text("TIME'S UP!");
                 $("#message").css("display", "block");
@@ -180,7 +180,7 @@ $(function () {
                     $("#timerSeconds").text(timeLeft);
                     $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
                     startGame();
-                }, 4000);
+                }, 5000);
             }
 
         }, 1000);
@@ -195,7 +195,7 @@ $(function () {
 
         setTimeout(function () {
             questionIndex++;
-            timeLeft = 5;
+            timeLeft = 15;
             $("#message").css("display", "none");
             $("#message").text("TIME'S UP");
             $("#timeLeft").css("display", "block");
@@ -203,10 +203,13 @@ $(function () {
             $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
             startGame();
 
-        }, 4000);
+        }, 5000);
 
     }
 
+    // Function starts the game
+    // If questionIndex reach QUESTIONS length, game ends and score
+    // shows up, otherwise the games keeps running until last question
     function startGame() {
 
         if (questionIndex < QUESTIONS.length) {
@@ -218,7 +221,7 @@ $(function () {
             intervalTimer();
 
         } else {
-            questionIndex = 8;
+            questionIndex = 0;
             $("#card").css("display", "none");
             $("#correct").text("Correct: " + correct);
             $("#incorrect").text("Incorrect: " + incorrect);
@@ -227,15 +230,17 @@ $(function () {
 
     }
 
+    // Click event button starts game
     $("#button").click(function(){
         correct = 0;
         incorrect = 0;
-        questionIndex = 8;
+        questionIndex = 0;
         $("#card").css("display", "flex");
         $("#button").css("display", "none");
         startGame();
     });
 
+    // Click event close score pop-up
     $("#close").click(function(){
         $("#score").css("display", "none");
         $("#button").css("display", "inline-block");
