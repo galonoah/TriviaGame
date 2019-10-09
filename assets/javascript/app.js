@@ -68,12 +68,15 @@ var QUESTIONS = [
     }
 ];
 
-var questionIndex = 6;
+var correctAnswerElement;
+var questionIndex = 0;
+var timeLeft = 5;
+var timer;
 
 $(function () {
 
     // Function gets Questions-Data and append it to HTML and
-    // return element with containing right answer text
+    // returns element containing correct answer
     function getTrivia() {
 
         var correctAnswer;
@@ -91,11 +94,11 @@ $(function () {
         return correctAnswer;
     }
 
-    // Function adds click event to each answer element and 
+    // Function adds click event to each answer element and
     // checks for correct answer. If clicked element has
     // correct answer, text turns green and appends check mark
-    // else text turns color gray and appends an X mark 
-    function checkCorrectAnswer(correctAnswerElement) {
+    // else text turns color gray and appends an X mark
+    function checkCorrectAnswer() {
 
         $("#answers").children().click(function () {
 
@@ -116,11 +119,38 @@ $(function () {
 
     }
 
+    // Function creates a countdown which is display on HTML
+    function intervalTimer() {
+
+        timer = setInterval(function () {
+
+            timeLeft--;
+            $("#timerSeconds").text(timeLeft);
+
+            if (timeLeft == 0) {
+                clearInterval(timer);
+                timeLeft = 5;
+                $("#timeLeft").css("display", "none");
+                $("#message").css("display", "block");
+
+                setTimeout(function () {
+                    $("#message").css("display", "none");
+                    $("#timeLeft").css("display", "block");
+                    $("#timerSeconds").text(timeLeft);
+                    startGame();
+                }, 4000);
+            }
+
+        }, 1000);
+    }
+
     function startGame() {
 
-        var correctAnswerElement = getTrivia();
+        correctAnswerElement = getTrivia();
 
-        checkCorrectAnswer(correctAnswerElement);
+        checkCorrectAnswer();
+
+        intervalTimer();
 
     }
 

@@ -47,6 +47,7 @@ body {
 
 #message {
 	display: none;
+	letter-spacing: 2px;
 }
 
 #question {
@@ -98,7 +99,6 @@ img {
 	background-color: #739dbe;
 	color: #fff;
 }
-
 
 .correct {
 	color: green;
