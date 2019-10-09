@@ -69,7 +69,7 @@ var QUESTIONS = [
 ];
 
 var correctAnswerElement;
-var questionIndex = 0;
+var questionIndex = 8;
 var timeLeft = 5;
 var timer;
 
@@ -105,19 +105,30 @@ $(function () {
             resetIntervalTimer();
 
             if ($(this).text() === correctAnswerElement.text()) {
+
                 showCorrectAnswer();
+
             } else {
+
                 $(this).addClass("wrong");
                 $(this).append("<span> &#10008;</span>");
                 $(this).siblings().not(correctAnswerElement).addClass("wrong");
+
                 correctAnswerElement.append("<span> &#10004;</span>");
                 correctAnswerElement.addClass("correct");
+
                 $("#message").css("display", "block");
                 $("#timeLeft").css("display", "none");
                 $("#message").text("INCORRECT");
+
+                $("#imageTrivia").attr("src", QUESTIONS[questionIndex].image);
+                questionIndex++;
+
             }
+
             $(this).parent().children().off("click"); // Prevent click event
             $("#answers").children().removeClass("hover"); // Turn off hover effect
+
         });
 
     }
@@ -159,6 +170,7 @@ $(function () {
                 $("#message").css("display", "block");
 
                 setTimeout(function () {
+                    questionIndex++;
                     $("#message").css("display", "none");
                     $("#timeLeft").css("display", "block");
                     $("#timerSeconds").text(timeLeft);
@@ -178,7 +190,7 @@ $(function () {
         clearInterval(timer);
 
         setTimeout(function () {
-
+            questionIndex++;
             timeLeft = 5;
             $("#message").css("display", "none");
             $("#message").text("TIME'S UP");
@@ -193,11 +205,15 @@ $(function () {
 
     function startGame() {
 
-        correctAnswerElement = getTrivia();
+        if (questionIndex < QUESTIONS.length) {
 
-        checkCorrectAnswer();
+            correctAnswerElement = getTrivia();
 
-        intervalTimer();
+            checkCorrectAnswer();
+
+            intervalTimer();
+
+        }
 
     }
 
