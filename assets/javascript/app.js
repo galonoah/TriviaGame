@@ -94,22 +94,6 @@ $(function () {
         return correctAnswer;
     }
 
-    // Function shows the correct trivia answer
-    function showCorrectAnswer() {
-
-        $("#answers").children().not(correctAnswerElement).addClass("wrong");
-        correctAnswerElement.append("<span> &#10004;</span>");
-        correctAnswerElement.addClass("correct");
-
-        $("#answers").children().removeClass("hover");
-        $("#answers").children().off("click");
-
-        $("#message").css("display", "block");
-        $("#timeLeft").css("display", "none");
-        $("#message").text("CORRECT");
-
-    }
-
     // Function adds click event to each answer element and
     // checks for correct answer. If clicked element has
     // correct answer, text turns green and appends check mark
@@ -138,6 +122,24 @@ $(function () {
 
     }
 
+    // Function shows the correct trivia answer
+    function showCorrectAnswer() {
+
+        $("#answers").children().not(correctAnswerElement).addClass("wrong");
+        correctAnswerElement.append("<span> &#10004;</span>");
+        correctAnswerElement.addClass("correct");
+
+        $("#answers").children().removeClass("hover");
+        $("#answers").children().off("click");
+
+        $("#message").css("display", "block");
+        $("#timeLeft").css("display", "none");
+        $("#message").text("CORRECT");
+
+        $("#imageTrivia").attr("src", QUESTIONS[questionIndex].image);
+
+    }
+
     // Function creates a countdown which is display on HTML
     // If timeLeft variable reach zero, correct answer shows up
     // and then wait for 4 seconds to restart
@@ -160,6 +162,7 @@ $(function () {
                     $("#message").css("display", "none");
                     $("#timeLeft").css("display", "block");
                     $("#timerSeconds").text(timeLeft);
+                    $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
                     startGame();
                 }, 4000);
             }
@@ -181,6 +184,7 @@ $(function () {
             $("#message").text("TIME'S UP");
             $("#timeLeft").css("display", "block");
             $("#timerSeconds").text(timeLeft);
+            $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
             startGame();
 
         }, 4000);
