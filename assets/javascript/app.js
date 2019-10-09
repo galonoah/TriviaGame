@@ -114,6 +114,8 @@ $(function () {
 
         $("#answers").children().click(function () {
 
+            resetIntervalTimer();
+
             if ($(this).text() === correctAnswerElement.text()) {
                 showCorrectAnswer();
             } else {
@@ -130,6 +132,8 @@ $(function () {
     }
 
     // Function creates a countdown which is display on HTML
+    // If timeLeft variable reach zero, correct answer shows up
+    // and then wait for 4 seconds to restart
     function intervalTimer() {
 
         timer = setInterval(function () {
@@ -153,6 +157,26 @@ $(function () {
             }
 
         }, 1000);
+    }
+
+
+    // Function clears countdown after an answer is click and
+    // waits four seconds to restart
+    function resetIntervalTimer() {
+
+        clearInterval(timer);
+
+        setTimeout(function () {
+
+            timeLeft = 5;
+            $("#message").css("display", "none");
+            $("#message").text("TIME'S UP");
+            $("#timeLeft").css("display", "block");
+            $("#timerSeconds").text(timeLeft);
+            startGame();
+
+        }, 4000);
+
     }
 
     function startGame() {
