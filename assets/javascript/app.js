@@ -94,6 +94,18 @@ $(function () {
         return correctAnswer;
     }
 
+    // Function shows the correct trivia answer
+    function showCorrectAnswer() {
+
+        $("#answers").children().not(correctAnswerElement).addClass("wrong");
+        correctAnswerElement.append("<span> &#10004;</span>");
+        correctAnswerElement.addClass("correct");
+
+        $("#answers").children().removeClass("hover");
+        $("#answers").children().off("click");
+
+    }
+
     // Function adds click event to each answer element and
     // checks for correct answer. If clicked element has
     // correct answer, text turns green and appends check mark
@@ -103,9 +115,7 @@ $(function () {
         $("#answers").children().click(function () {
 
             if ($(this).text() === correctAnswerElement.text()) {
-                $(this).addClass("correct");
-                $(this).append("<span> &#10004;</span>");
-                $(this).siblings().addClass("wrong");
+                showCorrectAnswer();
             } else {
                 $(this).addClass("wrong");
                 $(this).append("<span> &#10008;</span>");
@@ -128,6 +138,7 @@ $(function () {
             $("#timerSeconds").text(timeLeft);
 
             if (timeLeft == 0) {
+                showCorrectAnswer();
                 clearInterval(timer);
                 timeLeft = 5;
                 $("#timeLeft").css("display", "none");
