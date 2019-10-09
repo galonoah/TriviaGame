@@ -139,3 +139,31 @@ img {
 #button:active {
 	background: rgba(21, 94, 122, 0.9);
 }
+
+#score {
+	display: none;
+	position: absolute;
+	background: #fff;
+	color: #000;
+	font-size: 1.2em;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	width: 250px;
+	padding: 30px;
+	border-radius: 20px;
+	border: 5px dashed rgba(27, 145, 192, 0.9);
+  }
+
+  #close {
+	display: block;
+	color: #aaa;
+	font-size: 2em;
+	font-weight: bold;
+	padding: 0;
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: -5px;
+  }

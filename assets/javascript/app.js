@@ -72,6 +72,8 @@ var correctAnswerElement;
 var questionIndex = 8;
 var timeLeft = 5;
 var timer;
+var correct = 0;
+var incorrect = 0;
 
 $(function () {
 
@@ -106,10 +108,12 @@ $(function () {
 
             if ($(this).text() === correctAnswerElement.text()) {
 
+                correct++;
                 showCorrectAnswer();
 
             } else {
 
+                incorrect++;
                 $(this).addClass("wrong");
                 $(this).append("<span> &#10008;</span>");
                 $(this).siblings().not(correctAnswerElement).addClass("wrong");
@@ -122,7 +126,6 @@ $(function () {
                 $("#message").text("INCORRECT");
 
                 $("#imageTrivia").attr("src", QUESTIONS[questionIndex].image);
-                questionIndex++;
 
             }
 
@@ -162,6 +165,7 @@ $(function () {
             $("#timerSeconds").text(timeLeft);
 
             if (timeLeft == 0) {
+                incorrect++;
                 showCorrectAnswer();
                 clearInterval(timer);
                 timeLeft = 5;
@@ -213,13 +217,28 @@ $(function () {
 
             intervalTimer();
 
+        } else {
+            questionIndex = 8;
+            $("#card").css("display", "none");
+            $("#correct").text("Correct: " + correct);
+            $("#incorrect").text("Incorrect: " + incorrect);
+            $("#score").css("display", "block");
         }
 
     }
 
     $("#button").click(function(){
+        correct = 0;
+        incorrect = 0;
+        questionIndex = 8;
         $("#card").css("display", "flex");
-        $("#button").remove();
+        $("#button").css("display", "none");
         startGame();
     });
+
+    $("#close").click(function(){
+        $("#score").css("display", "none");
+        $("#button").css("display", "inline-block");
+    });
+
 });
