@@ -169,9 +169,15 @@ img {
 }
 
 @media all and (max-width: 650px) {
+
+	#container {
+		padding: 0 20px;
+		min-width: 320px;
+	}
+
 	#card {
 		flex-direction: column;
-		margin: 0 20px;
+		min-width: 320px;
 	}
 
 	#imageTrivia {
@@ -186,5 +192,9 @@ img {
 	#question {
 		order: 1;
 		width: 100%;
+	}
+
+	#gameTitle {
+		font-size: 2.5em;
 	}
 }
