@@ -77,6 +77,19 @@ var incorrect = 0;
 
 $(function () {
 
+    // Hide main HTML content until background image loads
+    $("#container").hide();
+    var src = $("#container").css("background-image");
+    var url = src.match(/\((.*?)\)/)[1].replace(/('|")/g, "");
+
+    var img = new Image();
+    img.onload = function () {
+      $(".looping-rhombuses-spinner").hide();
+      $('#container').show();
+    };
+    img.src = url;
+    if (img.complete) img.onload();
+
     // Function gets Questions-Data and append it to HTML and
     // returns element containing correct answer
     function getTrivia() {
