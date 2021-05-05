@@ -68,12 +68,23 @@ var QUESTIONS = [
     }
 ];
 
+var shuffleQuestions;
 var correctAnswerElement;
 var questionIndex = 0;
 var timeLeft = 12;
 var timer;
 var correct = 0;
 var incorrect = 0;
+
+// Shuffle list array
+const shuffle = ([...arr]) => {
+  let m = arr.length;
+  while (m) {
+    const i = Math.floor(Math.random() * m--);
+    [arr[m], arr[i]] = [arr[i], arr[m]];
+  }
+  return arr;
+};
 
 $(function () {
 
@@ -96,14 +107,14 @@ $(function () {
 
         var correctAnswer;
         $("#answers").empty();
-        $("#question-header").text(QUESTIONS[questionIndex].question);
-        QUESTIONS[questionIndex].answers.forEach(function (answer) {
-            var div = $("<div>").append(answer);
-            div.appendTo($("#answers"));
-            if (div.text() === QUESTIONS[questionIndex].correctAnswer) {
-                correctAnswer = div;
-            }
-            div.addClass("hover"); // Adds hover effect to each answer element
+        $("#question-header").text(shuffleQuestions[questionIndex].question);
+        shuffle(shuffleQuestions[questionIndex].answers).forEach(function (answer) {
+          var div = $("<div>").append(answer);
+          div.appendTo($("#answers"));
+          if (div.text() === shuffleQuestions[questionIndex].correctAnswer) {
+            correctAnswer = div;
+          }
+          div.addClass("hover"); // Adds hover effect to each answer element
         });
 
         return correctAnswer;
@@ -138,7 +149,7 @@ $(function () {
                 $("#timeLeft").css("display", "none");
                 $("#message").text("INCORRECT");
 
-                $("#imageTrivia").attr("src", QUESTIONS[questionIndex].image);
+                $("#imageTrivia").attr("src", shuffleQuestions[questionIndex].image);
 
             }
 
@@ -163,7 +174,7 @@ $(function () {
         $("#timeLeft").css("display", "none");
         $("#message").text("CORRECT");
 
-        $("#imageTrivia").attr("src", QUESTIONS[questionIndex].image);
+        $("#imageTrivia").attr("src", shuffleQuestions[questionIndex].image);
 
     }
 
@@ -216,16 +227,16 @@ $(function () {
             $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
             startGame();
 
-        }, 5000);
+        }, 4000);
 
     }
 
     // Function starts the game
-    // If questionIndex reach QUESTIONS length, game ends and score
+    // If questionIndex reach shuffleQuestions length, game ends and score
     // shows up, otherwise the games keeps running until last question
     function startGame() {
 
-        if (questionIndex < QUESTIONS.length) {
+        if (questionIndex < shuffleQuestions.length) {
 
             correctAnswerElement = getTrivia();
 
@@ -250,6 +261,7 @@ $(function () {
         questionIndex = 0;
         $("#card").css("display", "flex");
         $("#button").css("display", "none");
+        shuffleQuestions = shuffle(QUESTIONS);
         startGame();
     });
 

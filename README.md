@@ -1,4 +1,11 @@
-# General Knowledge Trivia
+<h1 align="center">Game of General Trivia 📚</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
+</p>
+
+> This is a simple game of general trivia build with jQuery.
+
+### ✨ [Demo](https://galoelmer.github.io/TriviaGame/)
 
 ## Game Overview
 
@@ -13,5 +20,33 @@
 - On the final screen, a result with the number of correct answers and incorrect answers is display. After closing the results screen, the player can press the start button and play again.
 
 ## Screenshot
+<p align="center">
+  <img width="700" src="./assets/images/screenshot.gif" >
+<p>
 
-![](assets/images/screenshot.JPG)
+## Built With
+
+* [jQuery](https://jquery.com/) - Fast, small, and feature-rich JavaScript library
+
+## Author
+
+👤 **Elmer C. Galo**
+
+* Github: [@galoelmer](https://github.com/galoelmer)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2021 [Elmer C. Galo](https://github.com/galoelmer).<br />
+This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
+
+
+
+
