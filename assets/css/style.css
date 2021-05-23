@@ -1,252 +1,288 @@
 body {
-	background: #0f2027;
-	background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-	font-family: "Nunito", sans-serif;
+  background: #0f2027;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  font-family: "Nunito", sans-serif;
 }
 
 #container {
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-attachment: fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	height: 100vh;
-	overflow: auto;
-	min-width: 375px;
-	text-align: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  overflow: auto;
+  min-width: 375px;
+  text-align: center;
 }
 
 #gameTitle {
-	color: white;
-	font-family: "Baloo", cursive;
-	font-size: 3em;
-	letter-spacing: 6px;
-	line-height: 1;
-	margin: 15px 0;
-	text-align: center;
-	text-transform: uppercase;
-	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
-		0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
-		0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
-		0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
-		0 20px 20px rgba(0, 0, 0, 0.15);
+  color: white;
+  font-family: "Baloo", cursive;
+  font-size: 3em;
+  letter-spacing: 6px;
+  line-height: 1;
+  margin: 15px 0;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+    0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
 #card {
-	display: none;
-	background-color: white;
-	border-radius: 10px;
-	overflow: hidden;
-	min-width: 375px;
-	max-width: 650px;
-	margin: 0 auto;
+  display: none;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 375px;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 #timer-image {
-	width: 30%;
+  width: 30%;
 }
 
 #message {
-	display: none;
-	letter-spacing: 2px;
+  display: none;
+  letter-spacing: 2px;
 }
 
 #question {
-	width: 70%;
+  width: 70%;
 }
 
 img {
-	width: 100%;
+  width: 100%;
 }
 
 #timer {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	height: 50px;
-	background: teal;
-	color: white;
-	font-size: 1.2em;
-	font-weight: 100;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+  background: teal;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 100;
 }
 
 #question {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #question-header {
-	background-color: whitesmoke;
-	padding: 10px;
-	font-size: 1.3em;
+  background-color: whitesmoke;
+  padding: 10px;
+  font-size: 1.3em;
 }
 
 #answers {
-	display: flex;
-	flex-direction: column;
-	font-size: 1.15em;
-	text-align: center;
-	height: 100%;
+  font-size: 1.15em;
+  text-align: center;
+  height: 100%;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "mobile-view-image answer-1"
+    "mobile-view-image answer-2"
+    "mobile-view-image answer-3"
+    "mobile-view-image answer-4";
 }
 
 #answers > * {
-	border-bottom: 1px solid #ddd;
-	height: 25%;
-	line-height: 2.5em;
-	cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
 
 .hover:hover {
-	background-color: #739dbe;
-	color: #fff;
+  background-color: #739dbe;
+  color: #fff;
 }
 
 .correct {
-	color: green;
+  color: green;
 }
 
 .correct > span {
-	color: green;
+  color: green;
 }
 
 .wrong {
-	color: #ddd;
+  color: #ddd;
 }
 
 .wrong > span {
-	color: red;
+  color: red;
 }
 
 #button {
-	background: rgba(36, 188, 248, 0.9);
-	border: 8px solid rgb(255, 255, 255);
-	border-radius: 50px;
-	color: #fff;
-	cursor: pointer;
-	font-size: 1.2em;
-	font-weight: bold;
-	letter-spacing: 4px;
-	outline: none;
-	padding: 20px;
-	margin-top: 3em;
-	text-transform: uppercase;
+  background: rgba(36, 188, 248, 0.9);
+  border: 8px solid rgb(255, 255, 255);
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 4px;
+  outline: none;
+  padding: 20px;
+  margin-top: 3em;
+  text-transform: uppercase;
 }
 
 #button:hover {
-	background: rgba(27, 145, 192, 0.9);
+  background: rgba(27, 145, 192, 0.9);
 }
 
 #button:active {
-	background: rgba(21, 94, 122, 0.9);
+  background: rgba(21, 94, 122, 0.9);
 }
 
 #score {
-	display: none;
-	position: absolute;
-	background: #fff;
-	color: #000;
-	font-size: 1.2em;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	width: 250px;
-	padding: 30px;
-	border-radius: 20px;
-	border: 5px dashed rgba(27, 145, 192, 0.9);
+  display: none;
+  position: absolute;
+  background: #fff;
+  color: #000;
+  font-size: 1.2em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 250px;
+  padding: 30px;
+  border-radius: 20px;
+  border: 5px dashed rgba(27, 145, 192, 0.9);
 }
 
 #close {
-	display: block;
-	color: #aaa;
-	font-size: 2em;
-	font-weight: bold;
-	padding: 0;
-	cursor: pointer;
-	position: absolute;
-	right: 10px;
-	top: -5px;
+  display: block;
+  color: #aaa;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: -5px;
 }
 
 @media all and (max-width: 650px) {
+  #container {
+    padding: 0 20px;
+    min-width: 320px;
+  }
 
-	#container {
-		padding: 0 20px;
-		min-width: 320px;
-	}
+  #card {
+    flex-direction: column;
+    min-width: 320px;
+  }
 
-	#card {
-		flex-direction: column;
-		min-width: 320px;
-	}
+  #imageTrivia {
+    display: none;
+  }
 
-	#imageTrivia {
-		display: none;
-	}
+  #timer-image {
+    order: 2;
+    width: 100%;
+  }
 
-	#timer-image {
-		order: 2;
-		width: 100%;
-	}
+  #question {
+    order: 1;
+    width: 100%;
+    height: 250px;
+  }
 
-	#question {
-		order: 1;
-		width: 100%;
-	}
-
-	#gameTitle {
-		font-size: 2.5em;
-	}
+  #gameTitle {
+    font-size: 2.5em;
+  }
 }
 
- /* Initial loading spinner */
-.looping-rhombuses-spinner, .looping-rhombuses-spinner * {
-      box-sizing: border-box;
-    }
+/* Initial loading spinner */
+.looping-rhombuses-spinner,
+.looping-rhombuses-spinner * {
+  box-sizing: border-box;
+}
 
-    .looping-rhombuses-spinner {
-      width: calc(15px * 4);
-      height: 15px;
-      position: absolute;
-	  top: 50%;
-	  left: 50%;
-	  transform: translate(-50%, -50%);
-    }
+.looping-rhombuses-spinner {
+  width: calc(15px * 4);
+  height: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    .looping-rhombuses-spinner .rhombus {
-      height: 15px;
-      width: 15px;
-      background-color: rgba(36, 188, 248, 0.9);
-      left: calc(15px * 4);
-      position: absolute;
-      margin: 0 auto;
-      border-radius: 2px;
-      transform: translateY(0) rotate(45deg) scale(0);
-      animation: looping-rhombuses-spinner-animation 2500ms linear infinite;
-    }
+.looping-rhombuses-spinner .rhombus {
+  height: 15px;
+  width: 15px;
+  background-color: rgba(36, 188, 248, 0.9);
+  left: calc(15px * 4);
+  position: absolute;
+  margin: 0 auto;
+  border-radius: 2px;
+  transform: translateY(0) rotate(45deg) scale(0);
+  animation: looping-rhombuses-spinner-animation 2500ms linear infinite;
+}
 
-    .looping-rhombuses-spinner .rhombus:nth-child(1) {
-      animation-delay: calc(2500ms * 1 / -1.5);
-    }
+.looping-rhombuses-spinner .rhombus:nth-child(1) {
+  animation-delay: calc(2500ms * 1 / -1.5);
+}
 
-    .looping-rhombuses-spinner .rhombus:nth-child(2) {
-      animation-delay: calc(2500ms * 2 / -1.5);
-    }
+.looping-rhombuses-spinner .rhombus:nth-child(2) {
+  animation-delay: calc(2500ms * 2 / -1.5);
+}
 
-    .looping-rhombuses-spinner .rhombus:nth-child(3) {
-      animation-delay: calc(2500ms * 3 / -1.5);
-    }
+.looping-rhombuses-spinner .rhombus:nth-child(3) {
+  animation-delay: calc(2500ms * 3 / -1.5);
+}
 
-    @keyframes looping-rhombuses-spinner-animation {
-      0% {
-        transform: translateX(0) rotate(45deg) scale(0);
-      }
-      50% {
-        transform: translateX(-233%) rotate(45deg) scale(1);
-      }
-      100% {
-        transform: translateX(-466%) rotate(45deg) scale(0);
-      }
-    }
+@keyframes looping-rhombuses-spinner-animation {
+  0% {
+    transform: translateX(0) rotate(45deg) scale(0);
+  }
+  50% {
+    transform: translateX(-233%) rotate(45deg) scale(1);
+  }
+  100% {
+    transform: translateX(-466%) rotate(45deg) scale(0);
+  }
+}
+
+.mobile-view-image {
+  grid-area: mobile-view-image;
+  width: 0px;
+  transition: width 1s;
+  border-bottom: none !important;
+}
+
+.answer-1 {
+  grid-area: answer-1;
+}
+
+.answer-2 {
+  grid-area: answer-2;
+}
+
+.answer-3 {
+  grid-area: answer-3;
+}
+
+.answer-4 {
+  grid-area: answer-4;
+}
+
+.expand-image {
+  width: 150px !important;
+}
