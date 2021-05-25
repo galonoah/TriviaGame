@@ -87,7 +87,24 @@ const shuffle = ([...arr]) => {
   return arr;
 };
 
+// show image expanding effect only on mobile view
+function showImageOnMobile() {
+  $(".mobile-view-image").addClass("expand-image");
+  setTimeout(() => {
+    $(".mobile-view-image").removeClass("expand-image");
+  }, 3800);
+}
+
 $(function () {
+  // Hide answer-image if not on mobile view
+  $(window).resize(function () {
+    if ($(window).width() > 650) {
+      $(".mobile-view-image").css("display", "none");
+    } else {
+      $(".mobile-view-image").css("display", "block");
+    }
+  });
+
   // Hide main HTML content until background image loads
   $("#container").hide();
   var src = $("#container").css("background-image");
@@ -160,9 +177,8 @@ $(function () {
         $(this).parent().children().off("click"); // Prevent click event
         $("#answers").children().removeClass("hover"); // Turn off hover effect
 
-        // show image expanding effect after choosing an answer only on mobile view
         if ($(window).width() <= 650) {
-          $(".mobile-view-image").addClass("expand-image");
+          showImageOnMobile();
         }
       });
   }
@@ -200,6 +216,10 @@ $(function () {
         $("#message").text("TIME'S UP!");
         $("#message").css("display", "block");
 
+         if ($(window).width() <= 650) {
+           showImageOnMobile();
+         }
+
         setTimeout(function () {
           questionIndex++;
           $("#message").css("display", "none");
@@ -207,7 +227,7 @@ $(function () {
           $("#timerSeconds").text(timeLeft);
           $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
           startGame();
-        }, 5000);
+        }, 4500);
       }
     }, 1000);
   }
@@ -226,7 +246,7 @@ $(function () {
       $("#timerSeconds").text(timeLeft);
       $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
       startGame();
-    }, 4000);
+    }, 4500);
   }
 
   // Function starts the game
