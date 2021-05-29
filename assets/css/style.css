@@ -34,18 +34,70 @@ body {
     0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
-#card {
+#card-trivia {
   display: none;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: repeat(6, 1rf);
+  grid-auto-rows: 1fr;
+  grid-template-areas:
+    "trivia-answer-image trivia-question"
+    "trivia-answer-image trivia-question"
+    "trivia-answer-image trivia-answers"
+    "trivia-answer-image trivia-answers"
+    "trivia-answer-image trivia-answers"
+    "timer-message trivia-answers";
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
   min-width: 375px;
   max-width: 650px;
+  height: 280px;
   margin: 0 auto;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.45);
 }
 
-#timer-image {
-  width: 30%;
+#card-trivia__question {
+  grid-area: trivia-question;
+  background-color: whitesmoke;
+  font-weight: bold;
+  font-size: 1.15em;
+  letter-spacing: 1px;
+  padding: 10px;
+}
+
+#card-trivia__answer-image {
+  grid-area: trivia-answer-image;
+}
+
+#card-trivia__answers {
+  grid-area: trivia-answers;
+  display: grid;
+}
+
+#card-trivia__timer-message {
+  grid-area: timer-message;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: teal;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 100;
+}
+
+#card-trivia__answers > * {
+  cursor: pointer;
+  font-size: 1.15em;
+}
+
+#card-trivia__answers > *:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+.text-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #message {
@@ -53,60 +105,7 @@ body {
   letter-spacing: 2px;
 }
 
-#question {
-  width: 70%;
-}
-
-img {
-  width: 100%;
-}
-
-#timer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 50px;
-  background: teal;
-  color: white;
-  font-size: 1.2em;
-  font-weight: 100;
-}
-
-#question {
-  display: flex;
-  flex-direction: column;
-}
-
-#question-header {
-  background-color: whitesmoke;
-  padding: 10px;
-  font-size: 1.3em;
-}
-
-#answers {
-  font-size: 1.15em;
-  text-align: center;
-  height: 100%;
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    "mobile-view-image answer-1"
-    "mobile-view-image answer-2"
-    "mobile-view-image answer-3"
-    "mobile-view-image answer-4";
-}
-
-#answers > * {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  cursor: pointer;
-}
-
-.hover:hover {
+.card-trivia__answer--hover-effect:hover {
   background-color: #739dbe;
   color: #fff;
 }
@@ -178,34 +177,57 @@ img {
   top: -5px;
 }
 
+#imageTrivia {
+  width: 100%;
+  height: 100%;
+}
+
+.expand-image {
+  width: 170px !important;
+}
+
+/* Mobile view */
 @media all and (max-width: 650px) {
   #container {
     padding: 0 20px;
     min-width: 320px;
   }
 
-  #card {
-    flex-direction: column;
-    min-width: 320px;
+  #card-trivia {
+    grid-template-columns: min-content 1fr;
+    grid-template-areas:
+      "trivia-question trivia-question"
+      "trivia-answer-image trivia-answers"
+      "trivia-answer-image trivia-answers"
+      "trivia-answer-image trivia-answers"
+      "trivia-answer-image trivia-answers"
+      "timer-message timer-message";
+    min-width: 280px;
+    height: 350px;
   }
 
-  #imageTrivia {
-    display: none;
+  #card-trivia__question {
+    padding: 15px;
   }
 
-  #timer-image {
-    order: 2;
-    width: 100%;
-  }
-
-  #question {
-    order: 1;
-    width: 100%;
-    height: 250px;
+  #card-trivia__answer-image {
+    width: 0px;
+    transition: width 1s;
   }
 
   #gameTitle {
     font-size: 2.5em;
+  }
+
+  .flip-box-front {
+    display: none;
+  }
+
+  .flip-box-back img {
+    min-width: 100%;
+    min-height: 100%;
+    display: block;
+    object-fit: cover;
   }
 }
 
@@ -260,29 +282,34 @@ img {
   }
 }
 
-.mobile-view-image {
-  grid-area: mobile-view-image;
-  width: 0px;
-  transition: width 1s;
-  border-bottom: none !important;
+/* Flip image 3d effect classes */
+.flip-box {
+  width: 100%;
+  height: 100%;
 }
 
-.answer-1 {
-  grid-area: answer-1;
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
-.answer-2 {
-  grid-area: answer-2;
+.flip-box-front,
+.flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.answer-3 {
-  grid-area: answer-3;
+.flip-box-back {
+  transform: rotateY(180deg);
+  overflow: hidden;
 }
 
-.answer-4 {
-  grid-area: answer-4;
-}
-
-.expand-image {
-  width: 150px !important;
+.flip-answer-image {
+  transform: rotateY(180deg);
 }

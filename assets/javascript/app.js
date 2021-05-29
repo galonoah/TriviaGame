@@ -1,7 +1,7 @@
 // Trivia questions and answers data
 var QUESTIONS = [
   {
-    question: "What unit of measurement is abbreviated 'Oz'?",
+    question: "What unit of measurement is abbreviated 'OZ'?",
     answers: ["Ounces", "Pounds", "Liters", "Oblongs"],
     correctAnswer: "Ounces",
     image: "./assets/images/ounces.jpg",
@@ -72,10 +72,11 @@ var QUESTIONS = [
 var shuffleQuestions;
 var correctAnswerElement;
 var questionIndex = 0;
-var timeLeft = 12;
+var timeLeft = 15;
 var timer;
 var correct = 0;
 var incorrect = 0;
+var isAnswerImageShowing = false;
 
 // Shuffle list array
 const shuffle = ([...arr]) => {
@@ -89,29 +90,36 @@ const shuffle = ([...arr]) => {
 
 // show image expanding effect only on mobile view
 function showImageOnMobile() {
-  $(".mobile-view-image").addClass("expand-image");
+  $("#card-trivia__answer-image").addClass("expand-image");
+  $(".flip-box-inner").addClass("flip-answer-image");
   setTimeout(() => {
-    $(".mobile-view-image").removeClass("expand-image");
+    $("#card-trivia__answer-image").removeClass("expand-image");
+    $(".flip-box-inner").removeClass("flip-answer-image");
   }, 3800);
 }
 
-$(function () {
-  // Hide answer-image if not on mobile view
-  $(window).resize(function () {
-    if ($(window).width() > 650) {
-      $(".mobile-view-image").css("display", "none");
-    } else {
-      $(".mobile-view-image").css("display", "block");
-    }
-  });
+// handle answer-image visibility on windows resizing
+$(window).on("resize", function () {
+  var win = $(this); //this = window
+  if (win.width() <= 650 && isAnswerImageShowing) {
+    $(".flip-box-inner").addClass("flip-answer-image");
+    $("#card-trivia__answer-image").addClass("expand-image");
+  }
 
+  if (win.width() > 650 && isAnswerImageShowing) {
+    $(".flip-box-inner").addClass("flip-answer-image");
+    $("#card-trivia__answer-image").removeClass("expand-image");
+  }
+});
+
+$(function () {
   // Hide main HTML content until background image loads
   $("#container").hide();
   var src = $("#container").css("background-image");
   var url = src.match(/\((.*?)\)/)[1].replace(/('|")/g, "");
-
   var img = new Image();
   img.onload = function () {
+    //  load app background image
     $(".looping-rhombuses-spinner").hide();
     $("#container").show();
   };
@@ -121,25 +129,35 @@ $(function () {
   // Function gets Questions-Data and append it to HTML and
   // returns element containing correct answer
   function getTrivia() {
-    var correctAnswer;
-    $("#answers").empty();
-    var imgDiv = $("<div class='mobile-view-image'>").css({
-      background: `url(${shuffleQuestions[questionIndex].image}) no-repeat center center`,
-      "background-size": "cover",
-    });
-    $("#answers").append(imgDiv);
-    $("#question-header").text(shuffleQuestions[questionIndex].question);
-    shuffle(shuffleQuestions[questionIndex].answers).forEach(function (
-      answer,
-      i
-    ) {
-      var div = $("<div>").append(answer);
-      div.addClass(`answer-${i + 1}`);
-      div.appendTo($("#answers"));
-      if (div.text() === shuffleQuestions[questionIndex].correctAnswer) {
-        correctAnswer = div;
+    let correctAnswer;
+
+    // delay appending answer-image after flip effect
+    setTimeout(() => {
+      $(".flip-box-back")
+        .empty()
+        .append(
+          `<img src='${shuffleQuestions[questionIndex].image}' alt='answer'>`
+        );
+    }, 500);
+
+    // append trivia question
+    $("#card-trivia__question").text(shuffleQuestions[questionIndex].question);
+
+    // get trivia possible answers
+    const shuffleAnswers = shuffle(shuffleQuestions[questionIndex].answers);
+
+    // remove previews answers and append new answers for next trivia
+    $("#card-trivia__answers").empty();
+    shuffleAnswers.forEach(function (answer) {
+      const answerElement = $("<div>").addClass(
+        "text-center card-trivia__answer--hover-effect"
+      );
+      answerElement.append(answer);
+      answerElement.appendTo($("#card-trivia__answers"));
+
+      if (answer === shuffleQuestions[questionIndex].correctAnswer) {
+        correctAnswer = answerElement;
       }
-      div.addClass("hover"); // Adds hover effect to each answer element
     });
 
     return correctAnswer;
@@ -150,9 +168,10 @@ $(function () {
   // correct answer, text turns green and appends check mark
   // else text turns color gray and appends an X mark
   function checkCorrectAnswer() {
-    $("#answers")
+    $("#card-trivia__answers")
       .children()
       .click(function () {
+        isAnswerImageShowing = true;
         resetIntervalTimer();
 
         if ($(this).text() === correctAnswerElement.text()) {
@@ -170,12 +189,19 @@ $(function () {
           $("#message").css("display", "block");
           $("#timeLeft").css("display", "none");
           $("#message").text("INCORRECT");
-
-          $("#imageTrivia").attr("src", shuffleQuestions[questionIndex].image);
         }
 
-        $(this).parent().children().off("click"); // Prevent click event
-        $("#answers").children().removeClass("hover"); // Turn off hover effect
+        // show image-answer with flip effect
+        if ($(window).width() > 650) {
+          $(".flip-box-inner, .flip-box-back").addClass("flip-answer-image");
+        }
+
+        // Prevent click event and hover effect after answer selection
+        $(this)
+          .parent()
+          .children()
+          .off("click")
+          .removeClass("card-trivia__answer--hover-effect");
 
         if ($(window).width() <= 650) {
           showImageOnMobile();
@@ -185,23 +211,26 @@ $(function () {
 
   // Function shows the correct trivia answer
   function showCorrectAnswer() {
-    $("#answers").children().not(correctAnswerElement).addClass("wrong");
+    $("#card-trivia__answers")
+      .children()
+      .not(correctAnswerElement)
+      .addClass("wrong");
     correctAnswerElement.append("<span> &#10004;</span>");
     correctAnswerElement.addClass("correct");
 
-    $("#answers").children().removeClass("hover");
-    $("#answers").children().off("click");
+    $("#card-trivia__answers").children().removeClass("hover");
+    $("#card-trivia__answers").children().off("click");
 
     $("#message").css("display", "block");
     $("#timeLeft").css("display", "none");
     $("#message").text("CORRECT");
-
-    $("#imageTrivia").attr("src", shuffleQuestions[questionIndex].image);
+    $(".flip-box-inner, .flip-box-back").addClass("flip-answer-image");
+    $("#card-trivia__answer-image").removeClass("expand-image");
   }
 
   // Function creates a countdown which is display on HTML
   // If timeLeft variable reach zero, correct answer shows up
-  // and then wait for 4 seconds to restart
+  // and then wait for 4.5 seconds to restart
   function intervalTimer() {
     timer = setInterval(function () {
       timeLeft--;
@@ -216,16 +245,18 @@ $(function () {
         $("#message").text("TIME'S UP!");
         $("#message").css("display", "block");
 
-         if ($(window).width() <= 650) {
-           showImageOnMobile();
-         }
+        if ($(window).width() <= 650) {
+          showImageOnMobile();
+        }
 
         setTimeout(function () {
           questionIndex++;
           $("#message").css("display", "none");
           $("#timeLeft").css("display", "block");
           $("#timerSeconds").text(timeLeft);
-          $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
+          $(".flip-box-inner, .flip-box-back").removeClass("flip-answer-image");
+          $("#card-trivia__answer-image").removeClass("expand-image");
+          isAnswerImageShowing = false;
           startGame();
         }, 4500);
       }
@@ -244,7 +275,9 @@ $(function () {
       $("#message").text("TIME'S UP");
       $("#timeLeft").css("display", "block");
       $("#timerSeconds").text(timeLeft);
-      $("#imageTrivia").attr("src", "./assets/images/questionMark.gif");
+      $(".flip-box-inner, .flip-box-back").removeClass("flip-answer-image");
+      $("#card-trivia__answer-image").removeClass("expand-image");
+      isAnswerImageShowing = false;
       startGame();
     }, 4500);
   }
@@ -261,7 +294,8 @@ $(function () {
       intervalTimer();
     } else {
       questionIndex = 0;
-      $("#card").css("display", "none");
+      isAnswerImageShowing = false;
+      $("#card-trivia").css("display", "none");
       $("#correct").text("Correct: " + correct);
       $("#incorrect").text("Incorrect: " + incorrect);
       $("#score").css("display", "block");
@@ -273,7 +307,7 @@ $(function () {
     correct = 0;
     incorrect = 0;
     questionIndex = 0;
-    $("#card").css("display", "flex");
+    $("#card-trivia").css("display", "grid");
     $("#button").css("display", "none");
     shuffleQuestions = shuffle(QUESTIONS);
     startGame();

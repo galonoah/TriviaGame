@@ -1,56 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Trivia Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Baloo|Nunito&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link
+      href="https://fonts.googleapis.com/css?family=Baloo|Nunito&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/javascript/app.js"></script>
-</head>
+  </head>
 
-<body>
-    <div id="container" style="background-image: url('./assets/images/background.jpg')">
-        <h1 id="gameTitle">General<br> Knowledge<br> Trivia</h1>
+  <body>
+    <div
+      id="container"
+      style="background-image: url('./assets/images/background.jpg')"
+    >
+      <h1 id="gameTitle">
+        General<br />
+        Knowledge<br />
+        Trivia
+      </h1>
 
-        <div id="card">
-            <div id="timer-image">
-                <img id="imageTrivia" src="./assets/images/questionMark.gif" alt="answer trivia">
-                <div id="timer">
-                    <h4 id="message">TIME'S UP!</h4>
-                    <h3 id="timeLeft">Time Left: <span id="timerSeconds">15</span></h3>
-                </div>
+      <div id="card-trivia">
+        <div id="card-trivia__question" class="text-center"></div>
+        <div id="card-trivia__answers"></div>
+        <div id="card-trivia__answer-image">
+          <div class="flip-box">
+            <div class="flip-box-inner">
+              <div class="flip-box-front">
+                <img
+                  id="imageTrivia"
+                  src="./assets/images/questionMark.gif"
+                  alt="answer trivia"
+                />
+              </div>
+              <div class="flip-box-back"></div>
             </div>
-            <div id="question">
-                <h2 id="question-header">In the initials of the federal agency known as NASA, what does the first 'A' stand for?</h2>
-                <div id="answers">
-                    <div class="correct">Lorem ipsum dolor sit amet <span>&#10004;</span></div>
-                    <div>Lorem ipsum dolor sit amet.</div>
-                    <div class="wrong">Lorem ipsum dolor sit amet <span>&#10008;</span></div>
-                    <div>Lorem ipsum dolor sit amet.</div>
-                </div>
-            </div>
+          </div>
         </div>
-
-        <button id="button">Start Game</button>
-
-        <div id="score">
-            <span id="close">&times;</span>
-            <h3>Final Score</h3>
-            <div id="correct"></div>
-            <div id="incorrect"></div>
+        <div id="card-trivia__timer-message">
+          <h4 id="message"></h4>
+          <h3 id="timeLeft">Time Left: <span id="timerSeconds">15</span></h3>
         </div>
+      </div>
 
-    </div>
-     <div class="looping-rhombuses-spinner">
-        <div class="rhombus"></div>
-        <div class="rhombus"></div>
-        <div class="rhombus"></div>
-    </div>
-</body>
+      <button id="button">Start Trivia</button>
 
+      <div id="score">
+        <span id="close">&times;</span>
+        <h3>Final Score</h3>
+        <div id="correct"></div>
+        <div id="incorrect"></div>
+      </div>
+    </div>
+    <div class="looping-rhombuses-spinner">
+      <div class="rhombus"></div>
+      <div class="rhombus"></div>
+      <div class="rhombus"></div>
+    </div>
+  </body>
 </html>
