@@ -1,0 +1,32 @@
+{
+  "name": "triviagame",
+  "version": "1.0.0",
+  "description": "Trivia Game is a type of game in which players are asked questions about different topics and they have to get as many correct answers as possible",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galoelmer/TriviaGame.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "trivia"
+  ],
+  "author": "Elmer C. Galo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galoelmer/TriviaGame/issues"
+  },
+  "homepage": "https://github.com/galoelmer/TriviaGame#readme",
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4"
+  }
+}

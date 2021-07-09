@@ -1,7 +1,7 @@
 body {
   background: #0f2027;
   background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 #container {
@@ -20,7 +20,7 @@ body {
 
 #gameTitle {
   color: white;
-  font-family: "Baloo", cursive;
+  font-family: 'Baloo', cursive;
   font-size: 3em;
   letter-spacing: 6px;
   line-height: 1;
@@ -40,12 +40,12 @@ body {
   grid-template-rows: repeat(6, 1rf);
   grid-auto-rows: 1fr;
   grid-template-areas:
-    "trivia-answer-image trivia-question"
-    "trivia-answer-image trivia-question"
-    "trivia-answer-image trivia-answers"
-    "trivia-answer-image trivia-answers"
-    "trivia-answer-image trivia-answers"
-    "timer-message trivia-answers";
+    'trivia-answer-image trivia-question'
+    'trivia-answer-image trivia-question'
+    'trivia-answer-image trivia-answers'
+    'trivia-answer-image trivia-answers'
+    'trivia-answer-image trivia-answers'
+    'timer-message trivia-answers';
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
@@ -223,12 +223,12 @@ footer a {
   #card-trivia {
     grid-template-columns: min-content 1fr;
     grid-template-areas:
-      "trivia-question trivia-question"
-      "trivia-answer-image trivia-answers"
-      "trivia-answer-image trivia-answers"
-      "trivia-answer-image trivia-answers"
-      "trivia-answer-image trivia-answers"
-      "timer-message timer-message";
+      'trivia-question trivia-question'
+      'trivia-answer-image trivia-answers'
+      'trivia-answer-image trivia-answers'
+      'trivia-answer-image trivia-answers'
+      'trivia-answer-image trivia-answers'
+      'timer-message timer-message';
     min-width: 280px;
     height: 350px;
   }
