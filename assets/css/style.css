@@ -83,6 +83,7 @@ body {
   color: white;
   font-size: 1.2em;
   font-weight: 100;
+  margin-bottom: -1px;
 }
 
 #card-trivia__answers > * {
@@ -184,6 +185,32 @@ body {
 
 .expand-image {
   width: 170px !important;
+}
+
+footer {
+  color: #f1fdff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  letter-spacing: 0.2em;
+  background: linear-gradient(
+    0deg,
+    rgba(2, 24, 37, 0.6951155462184874) 2%,
+    rgba(12, 57, 80, 0.4150035014005602) 45%
+  );
+}
+
+footer h6 {
+  padding: 0.5em 0;
+  margin: 0;
+  font-size: 0.75em;
+  font-weight: bold;
+  text-shadow: 3px 3px 6px #000;
+}
+
+footer a {
+  color: #f1fdff;
 }
 
 /* Mobile view */
